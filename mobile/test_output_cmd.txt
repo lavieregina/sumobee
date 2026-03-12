@@ -1,0 +1,63 @@
+00:00 +0: loading C:/Users/user/Desktop/sumobee/mobile/test/dashboard_test.dart
+lib/screens/dashboard_screen.dart:55:21: Error: Can't find ']' to match '['.
+          children: [
+                    ^
+lib/screens/dashboard_screen.dart:91:11: Error: Expected an identifier, but got ']'.
+Try inserting an identifier before ']'.
+          ],
+          ^
+lib/screens/dashboard_screen.dart:91:11: Error: Expected ')' before this.
+          ],
+          ^
+lib/screens/dashboard_screen.dart:51:20: Error: Too many positional arguments: 0 allowed, but 9 found.
+Try removing the extra positional arguments.
+      body: Padding(
+                   ^
+../flutter/packages/flutter/lib/src/widgets/basic.dart:1938:9: Context: Found this candidate, but the arguments don't match.
+  const Padding({
+        ^^^^^^^
+lib/screens/dashboard_screen.dart:93:7: Error: Expected ';' after this.
+      ),
+      ^
+lib/screens/dashboard_screen.dart:93:8: Error: Expected an identifier, but got ','.
+Try inserting an identifier before ','.
+      ),
+       ^
+lib/screens/dashboard_screen.dart:93:8: Error: Unexpected token ';'.
+      ),
+       ^
+lib/screens/dashboard_screen.dart:94:5: Error: Expected an identifier, but got ')'.
+Try inserting an identifier before ')'.
+    );
+    ^
+lib/screens/dashboard_screen.dart:93:8: Error: Expected ';' after this.
+      ),
+       ^
+lib/screens/dashboard_screen.dart:94:5: Error: Unexpected token ';'.
+    );
+    ^
+00:00 +0 -1: loading C:/Users/user/Desktop/sumobee/mobile/test/dashboard_test.dart [E]
+  Failed to load "C:/Users/user/Desktop/sumobee/mobile/test/dashboard_test.dart": Compilation failed for testPath=C:/Users/user/Desktop/sumobee/mobile/test/dashboard_test.dart
+  Error: the Dart compiler exited unexpectedly.
+  package:flutter_tools/src/base/common.dart 10:3  throwToolExit
+  package:flutter_tools/src/compile.dart 898:9     DefaultResidentCompiler._compile.<fn>
+  dart:async/zone.dart 1407:47                     _rootRunUnary
+  dart:async/zone.dart 1308:19                     _CustomZone.runUnary
+  dart:async/future_impl.dart 847:45               Future._propagateToListeners.handleValueCallback
+  dart:async/future_impl.dart 876:13               Future._propagateToListeners
+  dart:async/future_impl.dart 772:9                Future._propagateToListeners
+  dart:async/future_impl.dart 652:5                Future._completeWithValue
+  dart:async/future_impl.dart 722:7                Future._asyncCompleteWithValue.<fn>
+  dart:async/zone.dart 1399:13                     _rootRun
+  dart:async/zone.dart 1301:19                     _CustomZone.run
+  dart:async/zone.dart 1209:7                      _CustomZone.runGuarded
+  dart:async/zone.dart 1249:23                     _CustomZone.bindCallbackGuarded.<fn>
+  dart:async/schedule_microtask.dart 40:21         _microtaskLoop
+  dart:async/schedule_microtask.dart 49:5          _startMicrotaskLoop
+  dart:isolate-patch/isolate_patch.dart 118:13     _runPendingImmediateCallback
+  dart:isolate-patch/isolate_patch.dart 185:5      _RawReceivePort._handleMessage
+  
+00:00 +0 -1: C:/Users/user/Desktop/sumobee/mobile/test/preview_test.dart: PreviewScreen renders markdown content
+00:00 +1 -1: C:/Users/user/Desktop/sumobee/mobile/test/sharing_test.dart: SharingService parses valid YouTube URL
+00:00 +2 -1: C:/Users/user/Desktop/sumobee/mobile/test/sharing_test.dart: SharingService rejects invalid URL
+00:00 +3 -1: Some tests failed.

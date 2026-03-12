@@ -1,0 +1,82 @@
+# SumoBee 專案概況 (Project Overview)
+
+SumoBee 是一款致力於將 YouTube 影片內容快速「蒸餾」為精華摘要的行動應用程式。它的設計初衷是幫助使用者在資訊爆炸的時代，用最短的時間吸收最核心的內容。
+
+---
+
+## 🏗️ 系統架構 (System Architecture)
+
+SumoBee 採用前後端分離的現代化架構：
+
+```mermaid
+graph TD
+    User((使用者)) --> Flutter[Flutter Mobile App]
+    Flutter -->|HTTP/REST| API[FastAPI Backend]
+    API -->|查詢| YouTube[YouTube Data/Transcripts]
+    API -->|AI 處理| Groq[Groq / Gemini AI]
+    Flutter -->|儲存| LocalStorage[SharedPreferences]
+```
+
+---
+
+## 🛠️ 技術棧 (Tech Stack)
+
+### 前端 (Mobile/Web)
+- **語言**: Dart
+- **框架**: [Flutter SDK](https://flutter.dev/)
+- **關鍵套件**:
+  - `flutter_markdown`: 渲染漂亮的 AI 摘要。
+  - `shared_preferences`: 持久化用戶設定與 API Key。
+  - `flutter_sharing_intent`: 接收從 YouTube App 分享出的網址。
+  - `google_fonts`: 使用 Outfit 與 Inter 等現代字體提升質感。
+
+### 後端 (Server)
+- **語言**: Python 3.10+
+- **框架**: [FastAPI](https://fastapi.tiangolo.com/)
+- **AI 引擎**: 
+  - **Groq**: 提供極速的推理能力（Llama 3 / Mixtral）。
+  - **Gemini**: 作為強大的多模態備援。
+- **異步處理**: 使用 `httpx` 進行非阻塞式 API 請求。
+
+---
+
+## ✨ 核心功能項目 (Core Features)
+
+1. **極速 AI 摘要**: 整合 Groq 極速推理，可在 30 秒內完成長影片的重點擷取。
+2. **多國語系支援 (i18n)**: 
+   - 介面與摘要輸出均支援 **繁體中文、English、日本語、한국어**。
+   - 具備反應式 UI，切換語系不需重啟 App。
+3. **智慧金鑰管理**: 
+   - 支援自動偵測剪貼簿中的 API Key。
+   - 讓使用者「帶自己的金鑰 (BYOK)」，享受免費且隱私的 AI 服務。
+4. **YouTube 無縫銜接**: 支援分享意圖 (Share Intent)，從 YouTube 點擊分享即可直接啟動總結流程。
+5. **頂級視覺設計**: 採用深色模式、毛玻璃感 (Glassmorphism) 與流暢的微動畫。
+
+---
+
+## 📁 專案結構 (Project Directory)
+
+```text
+sumobee/
+├── api/                # Python 後端代碼 (FastAPI)
+│   ├── main.py         # 服務入口與路由
+│   ├── services/       # AI 與 YouTube 處理邏輯
+│   └── requirements.txt
+├── mobile/             # Flutter 前端代碼
+│   ├── lib/
+│   │   ├── main.dart   # App 入口與狀態管理
+│   │   ├── screens/    # 各大功能頁面
+│   │   ├── services/   # 本地化與 API 通訊
+│   │   └── config.dart # 全域配置 (如 API 位址)
+│   └── assets/         # 品牌 Logo、字體與靜態資源
+└── GEMINI.md           # 開發指南與備忘錄
+```
+
+---
+
+## 🚀 目前進度 (Current Status)
+- ✅ 前端所有頁面開發完成並套用進階 UI。
+- ✅ 多國語言系統開發完成並通過驗證。
+- ✅ 後端 AI 總結邏輯開發完成。
+- ✅ 移動端模擬驗證成功。
+- ⏳ 準備進入實體設備部署階段 (iOS/Android Build)。
