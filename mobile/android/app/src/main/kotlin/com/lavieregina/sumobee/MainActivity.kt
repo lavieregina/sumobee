@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.lavieregina.sumobee
 
 import io.flutter.embedding.android.FlutterActivity
 
