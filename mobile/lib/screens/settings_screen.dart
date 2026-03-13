@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sumobee/services/localization_service.dart';
 import 'package:sumobee/main.dart'; // For appLanguageNotifier
+import 'package:sumobee/services/analytics_service.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -38,6 +39,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (key == 'appLanguage') {
         _appLanguage = value;
         appLanguageNotifier.value = value; // Update global notifier
+        // Log Analytics: 介面語言切換
+        AnalyticsService.logLanguageChanged(value);
       }
       if (key == 'outputLanguage') _outputLanguage = value;
       if (key == 'summaryDetail') _summaryDetail = value;

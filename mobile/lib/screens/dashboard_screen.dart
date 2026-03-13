@@ -8,6 +8,7 @@ import 'package:sumobee/config.dart';
 import 'package:sumobee/screens/settings_screen.dart';
 import 'package:sumobee/services/localization_service.dart';
 import 'package:sumobee/main.dart'; // For appLanguageNotifier
+import 'package:sumobee/services/analytics_service.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -81,6 +82,10 @@ class _DashboardScreenState extends State<DashboardScreen> with WidgetsBindingOb
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('groqApiKey', value);
     setState(() => _groqKeySaved = true);
+    
+    // Log Analytics: API Key 更新
+    await AnalyticsService.logApiKeyUpdated();
+    
     _showToast('✅ Groq API Key 已就緒', isError: false);
   }
 
@@ -136,6 +141,10 @@ class _DashboardScreenState extends State<DashboardScreen> with WidgetsBindingOb
         summaryDetail: detail,
       );
       final taskId = res['taskId'] as String;
+      final videoId = res['videoId'] ?? 'unknown';
+
+      // Log Analytics: 摘要開始
+      await AnalyticsService.logSummarizationStarted(videoId);
 
       setState(() => _processingStatus = '正在透過 Groq AI 生成摘要...');
 
@@ -158,6 +167,9 @@ class _DashboardScreenState extends State<DashboardScreen> with WidgetsBindingOb
           _urlController.clear();
           break;
         } else if (status['status'] == 'error') {
+          // Log Analytics: 摘要失敗
+          await AnalyticsService.logSummarizationError(status['error_message']);
+
           setState(() => _isProcessing = false);
           _showToast(status['error_message'], isError: true);
           break;

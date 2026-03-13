@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "611110087066",
+    "project_id": "sumobee",
+    "storage_bucket": "sumobee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611110087066:android:2d84d6b17af08014dc7223",
+        "android_client_info": {
+          "package_name": "com.lavieregina.sumobee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh-kIcOY2vOL_xtbV0jxjQMHIgWOJTerg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,22 +6,25 @@ class AppConfig {
   static const String supabaseKey = 'sb_publishable_7WW2oenBgoE7wcA5mbn7jA_OKieTCFO';
 
   static String get baseUrl {
+    // Production Railway URL
+    const String productionUrl = 'https://sumobee-production.up.railway.app';
+    
+    // Always use production URL unless specifically testing locally
+    // For local development with emulator, uncomment the logic below
+    return productionUrl;
+
+    /*
     if (kIsWeb) {
       return 'http://127.0.0.1:8000';
     }
     
-    // Default fallback (Android Emulator host address is 10.0.2.2)
     String url = 'http://127.0.0.1:8000';
-    
     try {
       if (Platform.isAndroid) {
-        // If you are using a physical device, change this to your computer's IP
-        // If you are using an emulator, use 10.0.2.2
         url = 'http://10.0.2.2:8000'; 
       }
-    } catch (e) {
-      // Fallback for other platforms
-    }
+    } catch (e) {}
     return url;
+    */
   }
 }

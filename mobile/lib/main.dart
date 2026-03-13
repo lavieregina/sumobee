@@ -11,6 +11,9 @@ import 'package:sumobee/screens/dashboard_screen.dart';
 import 'package:sumobee/config.dart';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:sumobee/services/analytics_service.dart';
+import 'package:sumobee/firebase_options.dart';
 
 final appLanguageNotifier = ValueNotifier<String>('繁體中文');
 
@@ -21,6 +24,15 @@ Future<void> main() async {
     url: AppConfig.supabaseUrl,
     anonKey: AppConfig.supabaseKey,
   );
+
+  // 初始化 Firebase
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    debugPrint('Firebase 初始化失敗: $e');
+  }
 
   runApp(const SumoBeeApp());
 }
@@ -180,15 +192,19 @@ class _HomeScreenState extends State<HomeScreen> {
         groqApiKey: groqKey,
       );
       final taskId = res['taskId'];
+      final videoId = res['videoId'] ?? 'unknown';
       
-      _pollStatus(taskId);
+      // Log Analytics: 摘要開始
+      await AnalyticsService.logSummarizationStarted(videoId);
+      
+      _pollStatus(taskId, videoId: videoId);
     } catch (e) {
       setState(() => _isProcessing = false);
       _showError(e.toString());
     }
   }
 
-  Future<void> _pollStatus(String taskId) async {
+  Future<void> _pollStatus(String taskId, {String? videoId}) async {
     while (true) {
       await Future.delayed(const Duration(seconds: 3));
       if (!mounted) break;
@@ -206,9 +222,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           );
+          // Log Analytics: 摘要成功
+          await AnalyticsService.logSummarizationSuccess(videoId ?? 'unknown');
+          
           setState(() => _isProcessing = false);
           break;
         } else if (res['status'] == 'error') {
+          // Log Analytics: 摘要失敗
+          await AnalyticsService.logSummarizationError(res['error_message']);
+          
           setState(() => _isProcessing = false);
           _showError(res['error_message']);
           break;
