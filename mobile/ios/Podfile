@@ -1,9 +1,8 @@
 # Standard Flutter Podfile
-puts "--- ANTIGRAVITY BUILD DEBUG: Podfile Version 2026-03-13 ---"
 platform :ios, '13.0'
 
 # CocoaPods analytics sends network stats synchronously, which can slow down pod install.
-ENV['COCOAPODS_ABLE_STATS'] = '1'
+ENV['COCOAPODS_DISABLE_STATS'] = '1'
 
 # Load the Flutter podhelper script
 load File.join(File.dirname(File.realpath(__FILE__)), 'Flutter', 'podhelper.rb')
@@ -25,11 +24,12 @@ post_install do |installer|
     # Call the Flutter post-install hook
     flutter_additional_ios_build_settings(target)
     
-    # Force alignment of deployment target to 13.0 for all dependencies
+    # Configure build settings for all targets
     target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
       # Xcode 15+ sandboxing fix
       config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
+      # Force bitcode off for consistency
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
     end
   end
 end
