@@ -1,4 +1,5 @@
 # Standard Flutter Podfile
+puts "--- ANTIGRAVITY BUILD DEBUG: Podfile Version 2026-03-13 ---"
 platform :ios, '13.0'
 
 # CocoaPods analytics sends network stats synchronously, which can slow down pod install.
