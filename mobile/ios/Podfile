@@ -1,11 +1,13 @@
 # Standard Flutter Podfile
 platform :ios, '13.0'
 
-# CocoaPods analytics sends network stats synchronously, which can slow down pod install.
-ENV['COCOAPODS_DISABLE_STATS'] = '1'
-
 # Load the Flutter podhelper script
-load File.join(File.dirname(File.realpath(__FILE__)), 'Flutter', 'podhelper.rb')
+flutter_root = ENV['FLUTTER_ROOT'] || File.join('..', '..', 'flutter') # Fallback to local if exist
+podhelper_path = File.join(flutter_root, 'packages', 'flutter_tools', 'bin', 'podhelper.rb')
+# If not found in SDK path, fallback to local file
+podhelper_path = File.join(File.dirname(File.realpath(__FILE__)), 'Flutter', 'podhelper.rb') unless File.exist?(podhelper_path)
+
+load podhelper_path
 
 target 'Runner' do
   use_frameworks!
