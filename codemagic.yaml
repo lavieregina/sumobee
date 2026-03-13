@@ -21,9 +21,11 @@ workflows:
       - name: Get Flutter packages
         script: |
           cd mobile
-          # Ensure generated files are removed to avoid environment conflicts
+          # Force clean slate for iOS builds on CI
           rm -f ios/Flutter/Generated.xcconfig
           rm -f ios/Flutter/flutter_export_environment.sh
+          rm -rf ios/Pods
+          rm -f ios/Podfile.lock
           flutter pub get
       - name: Build Android APK
         script: |
