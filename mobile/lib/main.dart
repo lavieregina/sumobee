@@ -14,6 +14,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sumobee/services/analytics_service.dart';
 import 'package:sumobee/firebase_options.dart';
+import 'package:sumobee/screens/history_screen.dart';
 
 final appLanguageNotifier = ValueNotifier<String>('繁體中文');
 
@@ -144,8 +145,6 @@ class MobileSimulatorWrapper extends StatelessWidget {
     }
   }
 }
-
-import 'package:sumobee/screens/history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
