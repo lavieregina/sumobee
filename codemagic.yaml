@@ -4,7 +4,10 @@ workflows:
     instance_type: mac_mini_m1
     max_build_duration: 60
     environment:
-      flutter: stable
+      flutter: 3.22.2
+      # Explicitly use Java 17 for stability with Flutter 3.22
+      vars:
+        JAVA_HOME: /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
       groups:
         - google_play_credentials # Optional
         - app_store_credentials # Optional
