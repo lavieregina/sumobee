@@ -25,6 +25,8 @@ workflows:
           rm -rf ios/Pods
           rm -f ios/Podfile.lock
           flutter pub get
+          # Precache mandatory for custom pod install steps
+          flutter precache --ios
           cd ios && pod install --repo-update && cd ..
       - name: Build Android APK
         script: |
