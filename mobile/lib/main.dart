@@ -61,7 +61,7 @@ class SumoBeeApp extends StatelessWidget {
               surface: const Color(0xFF1E1E1E),
             ),
             textTheme: GoogleFonts.outfitTextTheme(ThemeData.dark().textTheme),
-            cardTheme: CardThemeData(
+            cardTheme: CardTheme(
               color: const Color(0xFF1E1E1E),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               elevation: 2,
