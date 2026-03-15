@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 yt-dlp
+groq
 google-generativeai
 resend
 supabase
